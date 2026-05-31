@@ -2,7 +2,10 @@
   "name": "@org/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky",
+    "format": "prettier --write ."
+  },
   "private": true,
   "devDependencies": {
     "@angular-devkit/core": "~21.2.0",
