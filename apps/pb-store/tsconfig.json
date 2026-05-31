@@ -5,7 +5,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "module": "preserve",
-    "noEmit": false
+    "noEmit": true,
+    "emitDeclarationOnly": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
