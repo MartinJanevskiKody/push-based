@@ -1,0 +1,138 @@
+:host {
+  --surface: #ffffff;
+  --ink: #14181f;
+  --ink-muted: #5b6471;
+  --accent: #4f46e5;
+  --border: rgba(20, 24, 31, 0.12);
+  --radius: 16px;
+
+  display: block;
+  color: var(--ink);
+}
+
+.details {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2.5rem);
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.product {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: 1fr;
+
+  @media (min-width: 48rem) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.product__media {
+  background: #f7f8fa;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.product__img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+.product__category {
+  display: inline-block;
+  color: var(--accent);
+  text-transform: capitalize;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.product__title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.product__rating {
+  margin: 0 0 0.75rem;
+  color: var(--ink-muted);
+}
+
+.product__stock {
+  margin-left: 0.5rem;
+}
+
+.product__price {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.product__desc {
+  margin: 0 0 1.5rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+.product__specs {
+  margin: 0 0 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  dt {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+.add {
+  padding: 0.85rem 1.75rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.state {
+  text-align: center;
+  color: var(--ink-muted);
+  padding: 2rem 0;
+}
+
+.state--error {
+  color: #b42318;
+}
+
+.retry {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+}

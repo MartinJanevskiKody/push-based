@@ -140,6 +140,7 @@
   border-radius: var(--radius);
   cursor: pointer;
   color: inherit;
+  text-decoration: none;
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease,
@@ -168,10 +169,23 @@
   }
 }
 
-.categories__empty {
+.state {
   grid-column: 1 / -1;
   text-align: center;
   color: var(--ink-muted);
+}
+
+.state--error {
+  color: #b42318;
+}
+
+.retry {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
 }
 
 @media (prefers-reduced-motion: reduce) {

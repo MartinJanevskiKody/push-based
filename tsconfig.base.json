@@ -20,7 +20,8 @@
     "customConditions": ["@org/source"],
     "paths": {
       "@push-based/feature-pb-store": ["./libs/feature-pb-store/src/index.ts"],
-      "@push-based/data-access": ["./libs/data-access/src/index.ts"]
+      "@push-based/data-access": ["./libs/data-access/src/index.ts"],
+      "@push-based/types": ["./libs/types/src/index.ts"]
     }
   }
 }

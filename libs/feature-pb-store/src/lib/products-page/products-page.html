@@ -1,1 +1,57 @@
-<p>products-page works!</p>
+<section class="products">
+  <header class="products__head">
+    <a class="back" routerLink="/">&larr; Categories</a>
+    <h1 class="products__title">
+      {{ query() ? 'Search results' : category() || 'All products' }}
+    </h1>
+    <p class="products__count">{{ productsResource.value().total }} items</p>
+  </header>
+
+  <form class="search" role="search" (submit)="$event.preventDefault()">
+    <label class="search__label" for="product-search">Search products</label>
+    <input
+      #searchInput
+      id="product-search"
+      class="search__input"
+      type="search"
+      placeholder="Search all products..."
+      [value]="query()"
+      (input)="onSearch(searchInput.value)"
+    />
+  </form>
+
+  @if (productsResource.isLoading()) {
+  <p class="state">Loading products...</p>
+  } @else if (productsResource.error()) {
+  <div class="state state--error" role="alert">
+    <p>Could not load products.</p>
+    <button type="button" class="retry" (click)="productsResource.reload()">
+      Try again
+    </button>
+  </div>
+  } @else {
+  <ul class="grid">
+    @for (product of productsResource.value().products; track product.id) {
+    <li>
+      <a class="card" [routerLink]="['/products/details', product.id]">
+        <img
+          class="card__img"
+          [src]="product.thumbnail"
+          [alt]="product.title"
+          loading="lazy"
+        />
+        <span class="card__title">{{ product.title }}</span>
+        <span class="card__meta">
+          <span class="card__price">{{ product.price | currency: 'USD' }}</span>
+          <span class="card__rating" aria-hidden="true"
+            >&#9733; {{ product.rating }}</span
+          >
+        </span>
+      </a>
+    </li>
+    } @empty {
+    <li class="state">No products found.</li>
+    }
+  </ul>
+  }
+</section>

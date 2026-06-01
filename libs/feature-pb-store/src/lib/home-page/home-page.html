@@ -15,26 +15,41 @@
 
 <main class="home">
   <form class="search" role="search" (submit)="$event.preventDefault()">
-    <label class="search__label" for="store-search">Search products</label>
+    <label class="search__label" for="store-search">Search categories</label>
     <input
       #searchInput
       id="store-search"
       class="search__input"
       type="search"
-      placeholder="Search for products, brands and categories..."
+      placeholder="Search categories..."
       [value]="query()"
       (input)="onSearch(searchInput.value)"
     />
   </form>
 
-  <section class="categories" aria-label="Categories">
-    @for (category of filteredCategories(); track category.slug) {
-    <button type="button" class="category">
-      <span class="category__icon" aria-hidden="true">{{ category.icon }}</span>
+  <section
+    class="categories"
+    aria-label="Categories"
+    aria-busy="{{ categoriesResource.isLoading() }}"
+  >
+    @if (categoriesResource.isLoading()) {
+    <p class="state">Loading categories...</p>
+    } @else if (categoriesResource.error()) {
+    <div class="state state--error" role="alert">
+      <p>Could not load categories.</p>
+      <button type="button" class="retry" (click)="categoriesResource.reload()">
+        Try again
+      </button>
+    </div>
+    } @else { @for (category of filteredCategories(); track category.slug) {
+    <a class="category" [routerLink]="['/products', category.slug]">
+      <span class="category__icon" aria-hidden="true"
+        >{{ iconFor(category.slug) }}</span
+      >
       <span class="category__name">{{ category.name }}</span>
-    </button>
+    </a>
     } @empty {
-    <p class="categories__empty">No categories match "{{ query() }}".</p>
-    }
+    <p class="state">No categories match "{{ query() }}".</p>
+    } }
   </section>
 </main>

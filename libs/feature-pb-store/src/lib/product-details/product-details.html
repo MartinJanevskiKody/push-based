@@ -1,1 +1,66 @@
-<p>product-details works!</p>
+<section class="details">
+  <a class="back" routerLink="/">&larr; Back to categories</a>
+
+  @if (productResource.isLoading()) {
+  <p class="state">Loading product...</p>
+  } @else if (productResource.error()) {
+  <div class="state state--error" role="alert">
+    <p>Could not load this product.</p>
+    <button type="button" class="retry" (click)="productResource.reload()">
+      Try again
+    </button>
+  </div>
+  } @else if (productResource.value(); as product) {
+  <article class="product">
+    <div class="product__media">
+      <img
+        class="product__img"
+        [src]="product.thumbnail"
+        [alt]="product.title"
+      />
+    </div>
+
+    <div class="product__info">
+      <a
+        class="product__category"
+        [routerLink]="['/products', product.category]"
+      >
+        {{ product.category }}
+      </a>
+      <h1 class="product__title">{{ product.title }}</h1>
+
+      <p class="product__rating" aria-hidden="true">
+        &#9733; {{ product.rating }}
+        <span class="product__stock">{{ product.availabilityStatus }}</span>
+      </p>
+
+      <p class="product__price">{{ product.price | currency: 'USD' }}</p>
+
+      <p class="product__desc">{{ product.description }}</p>
+
+      <dl class="product__specs">
+        <div>
+          <dt>Brand</dt>
+          <dd>{{ product.brand ?? 'N/A' }}</dd>
+        </div>
+        <div>
+          <dt>SKU</dt>
+          <dd>{{ product.sku }}</dd>
+        </div>
+        <div>
+          <dt>Stock</dt>
+          <dd>{{ product.stock }}</dd>
+        </div>
+        <div>
+          <dt>Warranty</dt>
+          <dd>{{ product.warrantyInformation }}</dd>
+        </div>
+      </dl>
+
+      <button type="button" class="add">Add to cart</button>
+    </div>
+  </article>
+  } @else {
+  <p class="state">Product not found.</p>
+  }
+</section>
