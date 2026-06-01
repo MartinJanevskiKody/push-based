@@ -1,1 +1,40 @@
-<p>home-page works!</p>
+<header class="header">
+  <span class="header__brand">Push-Based Store</span>
+
+  <button
+    type="button"
+    class="cart"
+    [attr.aria-label]="'Cart, ' + cartCount() + ' items'"
+  >
+    <span class="cart__icon" aria-hidden="true">&#x1F6D2;</span>
+    @if (cartCount() > 0) {
+    <span class="cart__badge">{{ cartCount() }}</span>
+    }
+  </button>
+</header>
+
+<main class="home">
+  <form class="search" role="search" (submit)="$event.preventDefault()">
+    <label class="search__label" for="store-search">Search products</label>
+    <input
+      #searchInput
+      id="store-search"
+      class="search__input"
+      type="search"
+      placeholder="Search for products, brands and categories..."
+      [value]="query()"
+      (input)="onSearch(searchInput.value)"
+    />
+  </form>
+
+  <section class="categories" aria-label="Categories">
+    @for (category of filteredCategories(); track category.slug) {
+    <button type="button" class="category">
+      <span class="category__icon" aria-hidden="true">{{ category.icon }}</span>
+      <span class="category__name">{{ category.name }}</span>
+    </button>
+    } @empty {
+    <p class="categories__empty">No categories match "{{ query() }}".</p>
+    }
+  </section>
+</main>
