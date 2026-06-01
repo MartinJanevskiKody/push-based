@@ -19,7 +19,8 @@
     "target": "es2022",
     "customConditions": ["@org/source"],
     "paths": {
-      "@push-based/feature-pb-store": ["./libs/feature-pb-store/src/index.ts"]
+      "@push-based/feature-pb-store": ["./libs/feature-pb-store/src/index.ts"],
+      "@push-based/data-access": ["./libs/data-access/src/index.ts"]
     }
   }
 }
