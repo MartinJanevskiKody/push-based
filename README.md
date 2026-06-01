@@ -1,10 +1,35 @@
-# New Nx Repository
+# Push-Based Store
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+An [Nx workspace](https://nx.dev) containing the Angular applications and supporting libraries for the Push-Based Store. Run `npx nx graph` to visually explore the project structure.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Applications
+
+| App        | Description           | Dev server port               |
+| ---------- | --------------------- | ----------------------------- |
+| `pb-store` | Customer-facing store | [4200](http://localhost:4200) |
+| `pb-cms`   | Content management UI | [4300](http://localhost:4300) |
+
+The dev-server ports are configured per app in their `serve` target (`apps/<app>/project.json`), so the two apps can run side by side without clashing.
+
+### Serve the apps locally
+
+```sh
+# Customer store on http://localhost:4200
+npm run serve:store
+# or: npx nx serve pb-store
+
+# CMS on http://localhost:4300
+npm run serve:cms
+# or: npx nx serve pb-cms
+
+# Run both at once
+npm run serve:all
+```
+
+Override the port ad hoc with `npx nx serve pb-store --port <port>`.
+
 ## Finish your Nx platform setup
 
 🚀 [Finish setting up your workspace](https://cloud.nx.app/connect/pnYcL6F8pm) to get faster builds with remote caching, distributed task execution, and self-healing CI. [Learn more about Nx Cloud](https://nx.dev/ci/intro/why-nx-cloud).
