@@ -4,7 +4,10 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "serve:store": "nx serve pb-store --port 4200",
+    "serve:cms": "nx serve pb-cms --port 4300",
+    "serve:all": "nx run-many --target=serve --projects=pb-store,pb-cms"
   },
   "private": true,
   "devDependencies": {
